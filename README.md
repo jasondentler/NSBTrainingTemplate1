@@ -1,0 +1,1 @@
+First template for NServiceBus training day 3
