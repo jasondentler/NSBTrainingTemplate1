@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Domain", "Hospital
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.CommandHandlers", "Hospital.CommandHandlers\Hospital.CommandHandlers.csproj", "{A9A4BF07-0D89-4257-B472-93985A113AC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Web", "Hospital.Web\Hospital.Web.csproj", "{A75E8460-2875-411D-A8ED-5E5E9B9B93D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.ReadModel.Web", "Hospital.ReadModel.Web\Hospital.ReadModel.Web.csproj", "{676D328C-423B-4579-BCB9-55D62B2DB768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{A9A4BF07-0D89-4257-B472-93985A113AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9A4BF07-0D89-4257-B472-93985A113AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9A4BF07-0D89-4257-B472-93985A113AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A75E8460-2875-411D-A8ED-5E5E9B9B93D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A75E8460-2875-411D-A8ED-5E5E9B9B93D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A75E8460-2875-411D-A8ED-5E5E9B9B93D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A75E8460-2875-411D-A8ED-5E5E9B9B93D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676D328C-423B-4579-BCB9-55D62B2DB768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676D328C-423B-4579-BCB9-55D62B2DB768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676D328C-423B-4579-BCB9-55D62B2DB768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676D328C-423B-4579-BCB9-55D62B2DB768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
