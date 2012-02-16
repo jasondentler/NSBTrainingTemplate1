@@ -70,11 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdmitPatientHandler.cs" />
-    <Compile Include="AssignBedHandler.cs" />
-    <Compile Include="CreatePatientHandler.cs" />
-    <Compile Include="DischargePatientHandler.cs" />
-    <Compile Include="EndpointCfg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
