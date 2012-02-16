@@ -55,13 +55,16 @@
       <HintPath>..\packages\NServiceBus.Ninject-CI.3.0.2027\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data">
-      <HintPath>..\packages\Simple.Data.Core.0.12.2.2\lib\net40\Simple.Data.dll</HintPath>
+      <HintPath>..\packages\Simple.Data.Core.0.14.0.3\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data.Ado">
-      <HintPath>..\packages\Simple.Data.Ado.0.12.2.2\lib\net40\Simple.Data.Ado.dll</HintPath>
+      <HintPath>..\packages\Simple.Data.Ado.0.14.0.3\lib\net40\Simple.Data.Ado.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.RawSql">
+    <Reference Include="Simple.Data.RawSql, Version=0.1.4403.16315, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Simple.Data.RawSql.0.1.4403.16315\lib\net40\Simple.Data.RawSql.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.SqlServer">
+      <HintPath>..\packages\Simple.Data.SqlServer.0.14.0.3\lib\net40\Simple.Data.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
