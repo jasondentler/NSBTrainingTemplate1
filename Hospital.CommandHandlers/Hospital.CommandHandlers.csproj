@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdmitPatientHandler.cs" />
-    <Compile Include="AggregateFactory.cs" />
     <Compile Include="AssignBedHandler.cs" />
     <Compile Include="CreatePatientHandler.cs" />
     <Compile Include="DischargePatientHandler.cs" />

@@ -82,12 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlersModule.cs" />
-    <Compile Include="DomainContext.cs" />
-    <Compile Include="DomainModule.cs" />
-    <Compile Include="NullConflictDetector.cs" />
     <Compile Include="PatientSteps.cs" />
-    <Compile Include="TestDispatcher.cs" />
     <Compile Include="TrackPatient.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
