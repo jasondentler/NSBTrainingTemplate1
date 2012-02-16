@@ -4,7 +4,7 @@ using Ninject;
 
 namespace Hospital.CommandHandlers
 {
-    public class EndpointCfg : IWantCustomInitialization
+    public class EndpointCfg : IConfigureThisEndpoint, IWantCustomInitialization
     {
         public void Init()
         {
@@ -12,8 +12,7 @@ namespace Hospital.CommandHandlers
 
             Configure.With()
                 .NinjectBuilder(kernel)
-                .Log4Net()
-                .JsonSerializer()
+                .MsmqTransport()
                 .UnicastBus()
                 .LoadMessageHandlers()
                 .CreateBus()

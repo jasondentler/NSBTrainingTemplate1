@@ -1,9 +1,17 @@
 ﻿using System;
+using NServiceBus;
 
 namespace Hospital.WriteModel
 {
     public class HospitalWriteService : IHospitalWriteService
     {
+        private readonly IBus _bus;
+
+        public HospitalWriteService(IBus bus)
+        {
+            _bus = bus;
+        }
+
         public void CreatePatient(Guid patientId, string firstName, string lastName)
         {
         }
