@@ -12,7 +12,7 @@ bin
 # Other
 /lib/Debug
 /lib/Release
-Simple.Data.RawSql/*.nupkg
+Packages/*
 
 # Other useful stuff
 * Thumbs.db
