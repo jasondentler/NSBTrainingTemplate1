@@ -17,10 +17,16 @@ namespace Hospital.Domain
             RaiseEvent(new PatientCreated()
                            {
                                EventId = Guid.NewGuid(),
-                               PatientId = Id
+                               PatientId = Id,
+                               FirstName = firstName,
+                               LastName = lastName
                            });
-
         }
+
+        private void Apply(PatientCreated e)
+        {
+        }
+
 
     }
 }
