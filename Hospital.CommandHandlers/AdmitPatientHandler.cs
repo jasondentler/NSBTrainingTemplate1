@@ -1,5 +1,4 @@
-﻿using System;
-using Hospital.Commands;
+﻿using Hospital.Commands;
 using NServiceBus;
 
 namespace Hospital.CommandHandlers
