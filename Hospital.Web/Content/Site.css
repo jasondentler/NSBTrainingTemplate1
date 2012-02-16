@@ -73,3 +73,32 @@ textarea
 {
     display: none;
 }
+
+
+/* Basic UI styles
+-----------------------------------------------------------*/
+
+.stats > div {
+    display: inline-block;
+    padding: 1em;
+    text-align: left;
+}
+
+label {
+    display: inline-block;
+    width: 10em;
+    text-align: right;
+}
+
+.actions > form {
+    display: inline;
+}
+
+.actions div
+{
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+

@@ -6,6 +6,7 @@ namespace Hospital.Commands
     {
 
         public Guid PatientId { get; set; }
+        public DateTimeOffset When { get; set; }
 
     }
 }

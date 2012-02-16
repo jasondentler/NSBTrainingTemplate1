@@ -1,0 +1,20 @@
+﻿@using Hospital.Web.Controllers
+@using Microsoft.Web.Mvc
+@model Hospital.HospitalStats
+
+<div class="stats">
+    <div>
+        <label for="admittedPatientCount">Admitted Patients:</label>
+        @(Html.ActionLink<PatientController>(c => c.Index(), Html.Encode(Model.AdmittedPatients), new{id="admittedPatientCount"}))
+    </div>
+
+    <div>
+        <label for="waitingForBedCount">Waiting for beds:</label>
+        @(Html.ActionLink<PatientController>(c => c.WaitingForBeds(), Html.Encode(Model.WaitingForBeds), new { id = "waitingForBedCount" }))
+    </div>
+
+    <div>
+        <label for="availableBedsCount">Available beds:</label>
+        @Model.AvailableBeds
+    </div>
+</div>

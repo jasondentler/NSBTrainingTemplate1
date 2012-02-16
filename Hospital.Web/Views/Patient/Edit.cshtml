@@ -1,0 +1,117 @@
+﻿@using Hospital.Web.Controllers
+@using Microsoft.Web.Mvc
+@using Newtonsoft.Json
+@model Hospital.PatientDetails
+@{
+    ViewBag.Title = Model.LastFirst;
+}
+@section Scripts
+{
+    <script type="text/javascript">
+        var getAvailableBedsUrl = @Html.Raw(JsonConvert.SerializeObject(Url.Action("GetAvailableBeds")));
+        $(function () {
+
+            function loadAvailableBedsList() {
+                var select = $(this).find('select');
+                select.empty().append($("<option />").text("Please wait. Loading."));
+                $.getJSON(getAvailableBedsUrl, function(beds) {
+                    var options = $.map(beds, function(bedNumber) {
+                        return $("<option />").val(bedNumber).text("Bed #" + bedNumber);
+                    });
+                    select.empty();
+                    $.each(options, function(idx, option) {
+                        select.append(option);
+                    });
+                });
+            }
+
+            function onOk() {
+                $(this).dialog('close');
+                $(this).find('form').submit();
+            }
+
+            function onCancel() {
+                $(this).dialog('close');
+            }
+
+            $('#assignBed').click(function() {
+                $("#assignBedDialog").dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: onOk,
+                        Cancel: onCancel
+                    },
+                    open: loadAvailableBedsList 
+                });
+            });
+        });
+    </script>
+}
+<div class="form">
+    <div>
+        <label>
+            First Name:</label>
+        @Model.FirstName
+    </div>
+    <div>
+        <label>
+            Last Name:</label>
+        @Model.LastName
+    </div>
+    <div>
+        <label>
+            Admitted:</label>
+        @(Model.Admitted.HasValue ? Model.Admitted.Value.ToLocalTime().ToString() : "Not admitted")
+    </div>
+    <div>
+        <label>
+            Discharged:</label>
+        @(Model.Discharged.HasValue ? Model.Discharged.Value.ToLocalTime().ToString() : "Not discharged")
+    </div>
+    <div>
+        <label>
+            Bed Assignment:</label>
+        @(Model.BedAssignment.HasValue ? "Bed #" + Model.BedAssignment.Value : "None")
+    </div>
+</div>
+<div class="actions">
+    @if (Model.CanAdmit)
+    {
+        using (Html.BeginForm<PatientController>(c => c.Admit(Model.PatientId)))
+        {
+        <div>
+            @Html.HiddenFor(p => p.PatientId)
+            @Html.SubmitButton("Admit", "Admit")
+        </div>
+        }
+    }
+    @if (Model.CanAssignBed)
+    {
+        
+        {
+        <div>
+            @Html.HiddenFor(p => p.PatientId)
+            <button id="assignBed">Assign Bed</button>
+        </div>
+        }
+    }
+    @if (Model.CanDischarge)
+    {
+        using (Html.BeginForm<PatientController>(c => c.Discharge(Model.PatientId)))
+        {
+        <div>
+            @Html.HiddenFor(p => p.PatientId)
+            @Html.SubmitButton("Discharge", "Discharge")
+        </div>
+        }
+    }
+</div>
+
+<div style="display: none;" title="Select a bed" id="assignBedDialog">
+    @using (Html.BeginForm<PatientController>(c => c.AssignBed(null)))
+    {
+        @Html.HiddenFor(m=>m.PatientId)
+        <select name="@Html.NameFor(m => m.BedAssignment)">
+        </select>
+    }
+</div>

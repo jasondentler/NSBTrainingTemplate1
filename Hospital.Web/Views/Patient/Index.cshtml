@@ -1,0 +1,15 @@
+﻿@using Hospital.Web.Controllers
+@using Microsoft.Web.Mvc;
+@model IEnumerable<Hospital.PatientBedAssignment>
+
+@{
+    ViewBag.Title = "Patient Roster";
+}
+
+<ul>
+@foreach(var patient in Model)
+{
+    <ul>@(Html.ActionLink<PatientController>(c => c.Edit(patient.PatientId), patient.LastFirst)) - 
+        @(patient.BedAssignment.HasValue ? "Bed #" + patient.BedAssignment : "Waiting for bed")</ul>
+}
+</ul>
