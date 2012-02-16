@@ -6,12 +6,9 @@ using EventStore.Dispatcher;
 using NServiceBus;
 using Newtonsoft.Json;
 using Ninject;
-using SharpTestsEx;
-using TechTalk.SpecFlow;
 
 namespace Hospital.Domain.Specs
 {
-    [Binding]
     public class DomainContext
     {
 
@@ -24,19 +21,16 @@ namespace Hospital.Domain.Specs
             Kernel.Load<CommandHandlersModule>();
         }
 
+        public DomainContext()
+        {
+            Kernel.Rebind<IDispatchCommits>()
+                .ToConstant(new TestEventDispatcher(_publishedEvents));
+        }
+
         private readonly Dictionary<Guid, List<IEvent>> _givenEvents = new Dictionary<Guid, List<IEvent>>();
         private readonly List<IEvent> _publishedEvents = new List<IEvent>();
         private Exception _exception;
         private readonly HashSet<IEvent> _checkedEvents = new HashSet<IEvent>();
-
-        [BeforeScenario("domain")]
-        public void BeforeDomain()
-        {
-            Kernel.Rebind<IDispatchCommits>()
-                .ToConstant(new TestDispatcher(_publishedEvents));
-
-            ScenarioContext.Current.Set(this);
-        }
 
         public IEnumerable<IEvent> GivenEvents(Guid aggregateId)
         {
@@ -49,6 +43,7 @@ namespace Hospital.Domain.Specs
 
         public IEnumerable<IEvent> PublishedEvents { get { return _publishedEvents.AsEnumerable(); } }
         public Exception Exception { get { return _exception; } }
+        public IEnumerable<IEvent> UncheckedEvents { get { return _publishedEvents.Except(_checkedEvents).AsEnumerable(); } }
 
         public void Given(Guid aggregateId, IEvent @event)
         {
@@ -106,29 +101,6 @@ namespace Hospital.Domain.Specs
         {
             _checkedEvents.Add(e);
         }
-        
-        [Then(@"nothing happens"), Scope(Tag="domain")]
-        public void ThenNothingHappens()
-        {
-            _publishedEvents.Should().Be.Empty();
-            _exception.Should().Be.Null();
-        }
-
-        [Then(@"nothing else happens"), Scope(Tag="domain")]
-        public void ThenNothingElseHappens()
-        {
-            _publishedEvents.Except(_checkedEvents).Should().Be.Empty();
-            _exception.Should().Be.Null();
-        }
-
-
-        [Then(@"error: (.+)")]
-        public void ThenError(string message)
-        {
-            _exception.Should().Not.Be.Null();
-            _exception.Message.Should().Be.EqualTo(message);
-        }
-
         
     }
 }
