@@ -2,9 +2,10 @@
 
 namespace Hospital.Events
 {
-    public class PatientDischarged
+    public class PatientDischarged : IEvent
     {
 
+        public Guid EventId { get; set; }
         public Guid PatientId { get; set; }
         public DateTimeOffset When { get; set; }
 

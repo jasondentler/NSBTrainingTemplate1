@@ -41,8 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HospitalStats.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="IEvent.cs" />
     <Compile Include="IHospitalReadService.cs" />
     <Compile Include="IHospitalWriteService.cs" />
+    <Compile Include="IMessage.cs" />
     <Compile Include="PatientBedAssignment.cs" />
     <Compile Include="PatientDetails.cs" />
     <Compile Include="PatientName.cs" />

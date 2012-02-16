@@ -2,9 +2,10 @@
 
 namespace Hospital.Events
 {
-    public class PatientCreated
+    public class PatientCreated : IEvent
     {
 
+        public Guid EventId { get; set; }
         public Guid PatientId { get; set; }
 
     }
