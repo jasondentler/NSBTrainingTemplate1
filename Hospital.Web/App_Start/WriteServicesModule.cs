@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Hospital.WriteModel;
+using Ninject.Modules;
 
 namespace Hospital.Web.App_Start
 {
@@ -9,6 +10,7 @@ namespace Hospital.Web.App_Start
             Kernel.Bind<IHospitalWriteService>()
                 .To<HospitalWriteService>()
                 .InSingletonScope();
+
         }
     }
 }

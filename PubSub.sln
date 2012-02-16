@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.SqlHandlers", "Hos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Core", "Hospital.Core\Hospital.Core.csproj", "{AB51D4CA-78F1-4991-B49E-246918DBF3EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.WriteModel", "Hospital.WriteModel\Hospital.WriteModel.csproj", "{57B38F99-A206-40BE-A1CE-B9EF30670ED2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{AB51D4CA-78F1-4991-B49E-246918DBF3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB51D4CA-78F1-4991-B49E-246918DBF3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB51D4CA-78F1-4991-B49E-246918DBF3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57B38F99-A206-40BE-A1CE-B9EF30670ED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57B38F99-A206-40BE-A1CE-B9EF30670ED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57B38F99-A206-40BE-A1CE-B9EF30670ED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57B38F99-A206-40BE-A1CE-B9EF30670ED2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

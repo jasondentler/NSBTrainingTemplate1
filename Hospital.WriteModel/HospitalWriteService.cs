@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hospital
+namespace Hospital.WriteModel
 {
     public class HospitalWriteService : IHospitalWriteService
     {
