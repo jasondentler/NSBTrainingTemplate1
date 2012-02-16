@@ -75,6 +75,10 @@
       <Project>{F5F597EF-9800-4795-9C79-FBB932CAED82}</Project>
       <Name>Hospital.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hospital.Core\Hospital.Core.csproj">
+      <Project>{AB51D4CA-78F1-4991-B49E-246918DBF3EE}</Project>
+      <Name>Hospital.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hospital.Domain\Hospital.Domain.csproj">
       <Project>{62E9C666-5523-4EB5-B881-152BA79C90C5}</Project>
       <Name>Hospital.Domain</Name>
