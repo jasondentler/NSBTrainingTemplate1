@@ -7,6 +7,7 @@ namespace Hospital.CommandHandlers
     {
         public void Handle(CreatePatient message)
         {
+            
         }
     }
 }
