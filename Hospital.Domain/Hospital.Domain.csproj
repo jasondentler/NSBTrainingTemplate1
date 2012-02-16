@@ -52,6 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hospital.Core\Hospital.Core.csproj">
+      <Project>{AB51D4CA-78F1-4991-B49E-246918DBF3EE}</Project>
+      <Name>Hospital.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hospital.Events\Hospital.Events.csproj">
       <Project>{D72372F4-81A6-4BD0-B51A-AAF183D6C993}</Project>
       <Name>Hospital.Events</Name>
