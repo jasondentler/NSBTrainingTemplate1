@@ -14,9 +14,9 @@ namespace Hospital.Web.App_Start
                 .To<HospitalWriteService>()
                 .InSingletonScope();
 
-            Func<Type, bool> isCommand = t => t.Assembly.GetName().Name == "Hospital.Commands";
-            Func<Type, bool> isEvent = t => t.Assembly.GetName().Name == "Hospital.Events";
-            Func<Type, bool> isMessage = t => isCommand(t) || isEvent(t);
+            Func<Type, bool> isCommand = t => t.IsAssignableFrom(typeof(ICommand));
+            Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof(IEvent));
+            Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof(IMessage));
             
             Configure.WithWeb()
                 .DefineEndpointName(typeof (MvcApplication).Namespace)
@@ -26,6 +26,7 @@ namespace Hospital.Web.App_Start
                 .DefiningEventsAs(isEvent)
                 .Log4Net()
                 .JsonSerializer()
+                .MsmqTransport()
                 .UnicastBus()
                 .SendOnly();
         }
