@@ -84,10 +84,13 @@
     <Compile Include="PatientViewHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatsViewHandler.cs" />
+    <Compile Include="WaitingForBedMetric.cs" />
     <Compile Include="WaitingForBedsViewHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
