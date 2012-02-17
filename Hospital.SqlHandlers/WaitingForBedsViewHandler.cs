@@ -23,13 +23,13 @@ namespace Hospital.SqlHandlers
         public void Handle(BedAssigned message)
         {
             var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.WaitingForBeds.DeletedByPatientId(message.PatientId);
+            db.WaitingForBeds.DeleteByPatientId(message.PatientId);
         }
 
         public void Handle(PatientDischarged message)
         {
             var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.WaitingForBeds.DeletedByPatientId(message.PatientId);
+            db.WaitingForBeds.DeleteByPatientId(message.PatientId);
         }
 
     }

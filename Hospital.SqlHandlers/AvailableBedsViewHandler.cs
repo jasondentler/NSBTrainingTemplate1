@@ -13,13 +13,13 @@ namespace Hospital.SqlHandlers
         public void Handle(BedAssigned message)
         {
             var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.AvailableBeds.DeletedByBed(message.Bed);
+            db.AvailableBeds.DeleteByBed(message.Bed);
         }
 
         public void Handle(PatientMoved message)
         {
             var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            using (var tx = db.BeginTransactions())
+            using (var tx = db.BeginTransaction())
             {
                 tx.AvailableBeds.Insert(Bed: message.FromBed);
                 tx.AvailableBeds.DeleteByBed(message.ToBed);

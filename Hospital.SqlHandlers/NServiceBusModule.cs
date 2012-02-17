@@ -1,6 +1,6 @@
 ﻿using System;
+using Hospital.Events;
 using NServiceBus;
-using NServiceBus.ObjectBuilder.Ninject.Config;
 using Ninject.Modules;
 
 namespace Hospital.SqlHandlers
@@ -13,8 +13,9 @@ namespace Hospital.SqlHandlers
             Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof(IEvent));
             Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof(IMessage));
 
-            Configure.With()
-                .NinjectBuilder(Kernel)
+            var bus = Configure.With()
+                .DefaultBuilder()
+                .Log4Net()
                 .DefiningMessagesAs(isMessage)
                 .DefiningCommandsAs(isCommand)
                 .DefiningEventsAs(isEvent)
@@ -25,6 +26,14 @@ namespace Hospital.SqlHandlers
                 .LoadMessageHandlers()
                 .CreateBus()
                 .Start();
+
+            Kernel.Bind<IBus>().ToConstant(bus);
+
+            bus.Subscribe<PatientCreated>();
+            bus.Subscribe<PatientAdmitted>();
+            bus.Subscribe<BedAssigned>();
+            bus.Subscribe<PatientMoved>();
+            bus.Subscribe<PatientDischarged>();
         }
     }
 }

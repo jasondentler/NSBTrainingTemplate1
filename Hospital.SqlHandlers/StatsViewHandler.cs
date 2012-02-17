@@ -15,18 +15,12 @@ namespace Hospital.SqlHandlers
 
         public void Handle(PatientAdmitted message)
         {
-            var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.Stats.UpdateAll(
-                AdmittedPatients: db.Stats.AdmittedPatients + 1,
-                WaitingForBeds: db.Stats.WaitingForBeds + 1);
+            Execute("UPDATE Stats SET AdmittedPatients = AdmittedPatients + 1, WaitingForBeds = WaitingForBeds + 1");
         }
 
         public void Handle(BedAssigned message)
         {
-            var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.Stats.UpdateAll(
-                AvailableBeds: db.Stats.AvailableBeds + 1,
-                WaitingForBeds: db.Stats.WaitingForBeds - 1);
+            Execute("UPDATE Stats SET AvailableBeds = AvailableBeds - 1, WaitingForBeds = WaitingForBeds - 1");
         }
 
         public void Handle(PatientDischarged message)
@@ -43,18 +37,26 @@ namespace Hospital.SqlHandlers
 
         private void HandlePatientDischargedWithBed()
         {
-            var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.Stats.UpdateAll(
-                AdmittedPatients: db.Stats.AdmittedPatients - 1,
-                AvailableBeds: db.Stats.WaitingForBeds + 1);
+            Execute("UPDATE Stats SET AdmittedPatients = AdmittedPatients - 1, AvailableBeds = AvailableBeds + 1");
         }
 
         private void HandlePatientDischargedWithoutBed()
         {
-            var db = Database.OpenNamedConnection(Constants.ConnectionStringName);
-            db.Stats.UpdateAll(
-                AdmittedPatients: db.Stats.AdmittedPatients - 1,
-                WaitingForBeds: db.Stats.WaitingForBeds - 1);
+            Execute("UPDATE Stats SET AdmittedPatients = AdmittedPatients - 1, WaitingForBeds = WaitingForBeds - 1");
+        }
+
+        private void Execute(string sql)
+        {
+            var connStr = ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ConnectionString;
+            using (var conn = new SqlConnection(connStr))
+            {
+                using (var cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
         }
 
     }
