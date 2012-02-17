@@ -10,8 +10,23 @@ namespace Hospital.CommandHandlers
         public void Init()
         {
             var kernel = new StandardKernel();
-            kernel.Load<NServiceBusModule>();
-            kernel.Load<DomainModule>();
+
+            Func<Type, bool> isCommand = t => t.IsAssignableFrom(typeof(ICommand));
+            Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof(IEvent));
+            Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof(IMessage));
+
+            Configure.With()
+                .NinjectBuilder(kernel)
+                .DefiningMessagesAs(isMessage)
+                .DefiningCommandsAs(isCommand)
+                .DefiningEventsAs(isEvent)
+                .JsonSerializer()
+                .MsmqTransport()
+                .MsmqSubscriptionStorage()
+                .UnicastBus()
+                .LoadMessageHandlers()
+                .CreateBus()
+                .Start();
         }
     }
 }

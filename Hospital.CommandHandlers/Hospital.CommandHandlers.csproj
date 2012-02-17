@@ -81,13 +81,8 @@
     <Compile Include="AssignBedHandler.cs" />
     <Compile Include="CreatePatientHandler.cs" />
     <Compile Include="DischargePatientHandler.cs" />
-    <Compile Include="DomainModule.cs" />
     <Compile Include="EndpointCfg.cs" />
-    <Compile Include="NServiceBusDispatcher.cs" />
-    <Compile Include="NServiceBusModule.cs" />
-    <Compile Include="PessimisticConflictDetector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WireUpExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hospital.Commands\Hospital.Commands.csproj">
