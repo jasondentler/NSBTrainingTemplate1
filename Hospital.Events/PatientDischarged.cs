@@ -8,6 +8,7 @@ namespace Hospital.Events
         public Guid EventId { get; set; }
         public Guid PatientId { get; set; }
         public DateTimeOffset When { get; set; }
+        public int? Bed { get; set; }
 
     }
 }

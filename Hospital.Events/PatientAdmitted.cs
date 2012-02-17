@@ -9,5 +9,7 @@ namespace Hospital.Events
         public Guid PatientId { get; set; }
         public DateTimeOffset When { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace Hospital.Domain
         private bool _admitted;
         private int? _bed;
         private bool _discharged;
+        private string _firstName;
+        private string _lastName;
 
         public Patient(Guid id)
         {
@@ -34,7 +36,9 @@ namespace Hospital.Domain
                                {
                                    EventId = Guid.NewGuid(),
                                    PatientId = Id,
-                                   When = when
+                                   When = when,
+                                   FirstName = _firstName,
+                                   LastName = _lastName
                                });
         }
 
@@ -75,12 +79,15 @@ namespace Hospital.Domain
                            {
                                EventId = Guid.NewGuid(),
                                PatientId = Id,
-                               When = DateTimeOffset.UtcNow
+                               When = DateTimeOffset.UtcNow,
+                               Bed = _bed,
                            });
         }
 
         private void Apply(PatientCreated e)
         {
+            _firstName = e.FirstName;
+            _lastName = e.LastName;
         }
 
         private void Apply(PatientAdmitted e)
