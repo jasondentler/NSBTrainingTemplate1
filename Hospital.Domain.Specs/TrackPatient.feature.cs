@@ -292,8 +292,6 @@ this.ScenarioSetup(scenarioInfo);
                         "Shirt"});
 #line 74
  testRunner.Given("I have created a patient", ((string)(null)), table12);
-#line 78
- testRunner.And("I have admitted the patient");
 #line hidden
             TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                         "Field",
@@ -301,9 +299,9 @@ this.ScenarioSetup(scenarioInfo);
             table13.AddRow(new string[] {
                         "Bed",
                         "2"});
-#line 79
+#line 78
  testRunner.When("I assign the patient to a bed", ((string)(null)), table13);
-#line 82
+#line 81
  testRunner.Then("error: The patient can\'t be assigned to a bed until admitted");
 #line hidden
             this.ScenarioCleanup();
@@ -316,7 +314,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discharge a patient", new string[] {
                         "domain"});
-#line 85
+#line 84
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
@@ -328,15 +326,15 @@ this.ScenarioSetup(scenarioInfo);
             table14.AddRow(new string[] {
                         "Last Name",
                         "Shirt"});
-#line 86
+#line 85
  testRunner.Given("I have created a patient", ((string)(null)), table14);
-#line 90
+#line 89
  testRunner.And("I have admitted the patient");
-#line 91
+#line 90
  testRunner.When("I discharge the patient");
-#line 92
+#line 91
  testRunner.Then("the patient is discharged");
-#line 93
+#line 92
  testRunner.And("nothing else happens");
 #line hidden
             this.ScenarioCleanup();
@@ -349,7 +347,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discharge an unadmitted patient", new string[] {
                         "domain"});
-#line 96
+#line 95
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -361,12 +359,45 @@ this.ScenarioSetup(scenarioInfo);
             table15.AddRow(new string[] {
                         "Last Name",
                         "Shirt"});
-#line 97
+#line 96
  testRunner.Given("I have created a patient", ((string)(null)), table15);
-#line 101
+#line 100
  testRunner.When("I discharge the patient");
-#line 102
+#line 101
  testRunner.Then("error: The patient can\'t be discharged without being admitted");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Discharge a discharged patient")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void DischargeADischargedPatient()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Discharge a discharged patient", new string[] {
+                        "domain"});
+#line 104
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table16.AddRow(new string[] {
+                        "First Name",
+                        "Red"});
+            table16.AddRow(new string[] {
+                        "Last Name",
+                        "Shirt"});
+#line 105
+ testRunner.Given("I have created a patient", ((string)(null)), table16);
+#line 109
+ testRunner.And("I have admitted the patient");
+#line 110
+ testRunner.And("I have discharged the patient");
+#line 111
+ testRunner.When("I discharge the patient");
+#line 112
+ testRunner.Then("nothing happens");
 #line hidden
             this.ScenarioCleanup();
         }

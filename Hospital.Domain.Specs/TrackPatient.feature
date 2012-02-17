@@ -75,7 +75,6 @@ Scenario: Assign an unadmitted patient to a bed
 	| Field      | Value |
 	| First Name | Red   |
 	| Last Name  | Shirt |
-	And I have admitted the patient
 	When I assign the patient to a bed
 	| Field | Value |
 	| Bed   | 2     |
@@ -101,3 +100,13 @@ Scenario: Discharge an unadmitted patient
 	When I discharge the patient
 	Then error: The patient can't be discharged without being admitted
 
+@domain
+Scenario: Discharge a discharged patient
+	Given I have created a patient
+	| Field      | Value |
+	| First Name | Red   |
+	| Last Name  | Shirt |
+	And I have admitted the patient
+	And I have discharged the patient
+	When I discharge the patient
+	Then nothing happens

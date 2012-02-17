@@ -4,8 +4,12 @@ using Hospital.Events;
 
 namespace Hospital.Domain
 {
-    public class Patient : AggregateBase 
+    public class Patient : AggregateBase
     {
+
+        private bool _admitted;
+        private int? _bed;
+        private bool _discharged;
 
         public Patient(Guid id)
         {
@@ -25,11 +29,53 @@ namespace Hospital.Domain
 
         public void Admit(DateTimeOffset when)
         {
-            RaiseEvent(new PatientAdmitted()
+            if (!_admitted)
+                RaiseEvent(new PatientAdmitted()
+                               {
+                                   EventId = Guid.NewGuid(),
+                                   PatientId = Id,
+                                   When = when
+                               });
+        }
+
+        public void AssignBed(int bed)
+        {
+            if (!_admitted)
+                throw new ApplicationException("The patient can't be assigned to a bed until admitted");
+
+            if (!_bed.HasValue)
+            {
+                RaiseEvent(new BedAssigned()
+                               {
+                                   EventId = Guid.NewGuid(),
+                                   PatientId = Id,
+                                   Bed = bed
+                               });
+            }
+            else
+            {
+                RaiseEvent(new PatientMoved()
+                               {
+                                   EventId = Guid.NewGuid(),
+                                   PatientId = Id,
+                                   FromBed = _bed.Value,
+                                   ToBed = bed
+                               });
+            }
+        }
+
+        public void Discharge()
+        {
+            if (_discharged)
+                return;
+            if (!_admitted)
+                throw new ApplicationException("The patient can't be discharged without being admitted");
+
+            RaiseEvent(new PatientDischarged()
                            {
                                EventId = Guid.NewGuid(),
                                PatientId = Id,
-                               When = when
+                               When = DateTimeOffset.UtcNow
                            });
         }
 
@@ -39,6 +85,23 @@ namespace Hospital.Domain
 
         private void Apply(PatientAdmitted e)
         {
+            _admitted = true;
+        }
+
+        private void Apply(BedAssigned e)
+        {
+            _bed = e.Bed;
+        }
+
+        private void Apply(PatientMoved e)
+        {
+            _bed = e.ToBed;
+        }
+
+        private void Apply(PatientDischarged e)
+        {
+            _discharged = true;
+            _admitted = false;
         }
 
     }
