@@ -47,8 +47,6 @@ namespace Hospital.Domain.Specs
 
         public void Given(Guid aggregateId, IEvent @event)
         {
-            Console.WriteLine("\t\tEvent {0} {1}", @event.GetType().Name, JsonConvert.SerializeObject(@event));
-
             var store = Kernel.Get<IStoreEvents>();
             var stream = store.OpenStream(aggregateId, 0, int.MaxValue);
             stream.Add(new EventMessage()
