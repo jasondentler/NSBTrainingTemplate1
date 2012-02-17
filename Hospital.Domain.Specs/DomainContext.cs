@@ -72,6 +72,7 @@ namespace Hospital.Domain.Specs
             if (handler == null)
                 throw new ApplicationException(string.Format("No handler for {0}", typeof (TCommand)));
 
+            _publishedEvents.Clear();
             try
             {
                 handler.Handle(command);
