@@ -78,7 +78,7 @@ namespace Hospital.Domain.Specs
             }
             catch (Exception exception)
             {
-                Console.WriteLine("\t\t{0} {1}", exception.GetType().Name, exception.ToString());
+                Console.WriteLine("\t\t{0}", exception);
                 _exception = exception;
             }
         }

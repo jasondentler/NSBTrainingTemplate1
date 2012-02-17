@@ -23,10 +23,23 @@ namespace Hospital.Domain
                            });
         }
 
+        public void Admit(DateTimeOffset when)
+        {
+            RaiseEvent(new PatientAdmitted()
+                           {
+                               EventId = Guid.NewGuid(),
+                               PatientId = Id,
+                               When = when
+                           });
+        }
+
         private void Apply(PatientCreated e)
         {
         }
 
+        private void Apply(PatientAdmitted e)
+        {
+        }
 
     }
 }
