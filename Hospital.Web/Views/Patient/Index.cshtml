@@ -6,10 +6,20 @@
     ViewBag.Title = "Patient Roster";
 }
 
+@(Html.ActionLink<PatientController>(c => c.Create(), "Create a patient"))
+
 <ul>
 @foreach(var patient in Model)
 {
-    <ul>@(Html.ActionLink<PatientController>(c => c.Edit(patient.PatientId), patient.LastFirst)) - 
-        @(patient.BedAssignment.HasValue ? "Bed #" + patient.BedAssignment : "Waiting for bed")</ul>
+    <ul>
+        @(Html.ActionLink<PatientController>(c => c.Edit(patient.PatientId), patient.LastFirst)) - 
+        @(patient.BedAssignment.HasValue 
+            ? "Bed #" + patient.BedAssignment 
+            : patient.IsDischarged
+                ? "Discharged"
+                : patient.IsAdmitted
+                    ? "Waiting for a bed"
+                    : "Not admitted")
+    </ul>
 }
 </ul>

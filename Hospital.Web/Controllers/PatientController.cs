@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Microsoft.Web.Mvc;
+using MvcContrib.Filters;
 
 namespace Hospital.Web.Controllers
 {
@@ -18,7 +19,7 @@ namespace Hospital.Web.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-            var model = _hospitalReadService.GetAllAdmittedPatients();
+            var model = _hospitalReadService.GetAllPatients();
             return View(model);
         }
 
@@ -31,6 +32,24 @@ namespace Hospital.Web.Controllers
                 return HttpNotFound();
 
             return View(model);
+        }
+
+        [HttpGet, ModelStateToTempData]
+        public ViewResult Create()
+        {
+            var model = new CreateViewModel(Guid.NewGuid()) {PatientId = Guid.NewGuid()};
+            return View(model);
+        }
+
+        [HttpPost, ModelStateToTempData]
+        public RedirectToRouteResult Create(CreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _hospitalWriteService.CreatePatient(model.PatientId, model.FirstName, model.LastName);
+                return this.RedirectToAction(c => c.Index());
+            }
+            return this.RedirectToAction(c => c.Create());
         }
 
         [HttpGet]

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateViewModel.cs" />
     <Compile Include="HospitalStats.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="IEvent.cs" />

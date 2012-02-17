@@ -39,9 +39,15 @@
     <Reference Include="EventStore">
       <HintPath>..\packages\EventStore.3.0.11326.44\lib\net40\EventStore.dll</HintPath>
     </Reference>
+    <Reference Include="EventStore.Serialization.Json">
+      <HintPath>..\packages\EventStore.Serialization.Json.3.0.11326.44\lib\net40\EventStore.Serialization.Json.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
@@ -75,8 +81,13 @@
     <Compile Include="AssignBedHandler.cs" />
     <Compile Include="CreatePatientHandler.cs" />
     <Compile Include="DischargePatientHandler.cs" />
+    <Compile Include="DomainModule.cs" />
     <Compile Include="EndpointCfg.cs" />
+    <Compile Include="NServiceBusDispatcher.cs" />
+    <Compile Include="NServiceBusModule.cs" />
+    <Compile Include="PessimisticConflictDetector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WireUpExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hospital.Commands\Hospital.Commands.csproj">

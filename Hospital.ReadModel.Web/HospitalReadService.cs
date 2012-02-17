@@ -23,16 +23,18 @@ namespace Hospital.ReadModel.Web
                        };
         }
 
-        public IEnumerable<PatientBedAssignment> GetAllAdmittedPatients()
+        public IEnumerable<PatientBedAssignment> GetAllPatients()
         {
             Database db = Database.OpenNamedConnection(ConnectionName);
-            var rows = db.ToRows("SELECT PatientId, FirstName, LastName, BedAssignment FROM AdmittedPatients ORDER BY LastName, FirstName");
+            var rows = db.ToRows("SELECT PatientId, FirstName, LastName, BedAssignment, IsAdmitted, IsDischarged FROM Patients ORDER BY LastName, FirstName");
             return rows.Select(r => new PatientBedAssignment()
                                         {
                                             PatientId = r.PatientId,
                                             FirstName = r.FirstName,
                                             LastName = r.LastName,
-                                            BedAssignment = r.BedAssignment
+                                            BedAssignment = r.BedAssignment,
+                                            IsAdmitted = r.IsAdmitted,
+                                            IsDischarged = r.IsDischarged
                                         });
         }
 
