@@ -11,13 +11,6 @@ namespace Hospital.SqlHandlers
         IHandleMessages<BedAssigned>,
         IHandleMessages<PatientDischarged>
     {
-        private readonly IBus _bus;
-
-        public WaitingForBedMetric(IBus bus)
-        {
-            _bus = bus;
-        }
-
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<PatientAdmitted>(s => s.PatientId, e => e.PatientId);
@@ -43,7 +36,7 @@ namespace Hospital.SqlHandlers
 
         public override void Timeout(object state)
         {
-            _bus.Send(new WaitingForBedMetricExceeded()
+            Bus.Send(new WaitingForBedMetricExceeded()
                           {
                               PatientId = Data.PatientId
                           });
