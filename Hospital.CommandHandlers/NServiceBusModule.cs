@@ -11,9 +11,9 @@ namespace Hospital.CommandHandlers
     {
         public override void Load()
         {
-            Func<Type, bool> isCommand = t => t.IsAssignableFrom(typeof (ICommand));
-            Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof (IEvent));
-            Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof (IMessage));
+            Func<Type, bool> isMessage = t => typeof(IMessage).IsAssignableFrom(t);
+            Func<Type, bool> isCommand = t => typeof(ICommand).IsAssignableFrom(t);
+            Func<Type, bool> isEvent = t => typeof(IEvent).IsAssignableFrom(t);
 
             var config = Configure.With()
                 .DefaultBuilder()

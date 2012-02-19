@@ -9,9 +9,9 @@ namespace Hospital.SqlHandlers
     {
         public override void Load()
         {
-            Func<Type, bool> isCommand = t => t.IsAssignableFrom(typeof(ICommand));
-            Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof(IEvent));
-            Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof(IMessage));
+            Func<Type, bool> isMessage = t => typeof(IMessage).IsAssignableFrom(t);
+            Func<Type, bool> isCommand = t => typeof(ICommand).IsAssignableFrom(t);
+            Func<Type, bool> isEvent = t => typeof(IEvent).IsAssignableFrom(t);
 
             var bus = Configure.With()
                 .DefaultBuilder()
@@ -29,11 +29,11 @@ namespace Hospital.SqlHandlers
 
             Kernel.Bind<IBus>().ToConstant(bus);
 
-            bus.Subscribe<PatientCreated>();
-            bus.Subscribe<PatientAdmitted>();
-            bus.Subscribe<BedAssigned>();
-            bus.Subscribe<PatientMoved>();
-            bus.Subscribe<PatientDischarged>();
+            //bus.Subscribe<PatientCreated>();
+            //bus.Subscribe<PatientAdmitted>();
+            //bus.Subscribe<BedAssigned>();
+            //bus.Subscribe<PatientMoved>();
+            //bus.Subscribe<PatientDischarged>();
         }
     }
 }

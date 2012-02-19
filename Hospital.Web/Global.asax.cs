@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using SignalR.Hosting.AspNet.Routing;
 
 namespace Hospital.Web
 {
@@ -8,6 +9,7 @@ namespace Hospital.Web
 
     public class MvcApplication : System.Web.HttpApplication
     {
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());

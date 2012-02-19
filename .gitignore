@@ -23,3 +23,4 @@ Packages/*
 *.user
 *.DS_Store
 /packages
+*/log-file.txt

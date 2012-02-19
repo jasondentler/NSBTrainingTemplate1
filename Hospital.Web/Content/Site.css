@@ -78,7 +78,7 @@ textarea
 /* Basic UI styles
 -----------------------------------------------------------*/
 
-.stats > div {
+#stats > div {
     display: inline-block;
     padding: 1em;
     text-align: left;

@@ -1,4 +1,5 @@
 ﻿using System;
+using Hospital.Web.Signalr;
 using NServiceBus;
 using NServiceBus.ObjectBuilder.Ninject.Config;
 using Hospital.WriteModel;
@@ -10,17 +11,21 @@ namespace Hospital.Web.App_Start
     {
         public override void Load()
         {
+
             Kernel.Bind<IHospitalWriteService>()
                 .To<HospitalWriteService>()
                 .InSingletonScope();
 
-            Func<Type, bool> isCommand = t => t.IsAssignableFrom(typeof(ICommand));
-            Func<Type, bool> isEvent = t => t.IsAssignableFrom(typeof(IEvent));
-            Func<Type, bool> isMessage = t => t.IsAssignableFrom(typeof(IMessage));
-            
+            var ensureTheCompilerDoesntOptimizeThisReferenceAway = typeof (StatsHandler);
+
+            Func<Type, bool> isMessage = t => typeof(IMessage).IsAssignableFrom(t);
+            Func<Type, bool> isCommand = t => typeof(ICommand).IsAssignableFrom(t);
+            Func<Type, bool> isEvent = t => typeof(IEvent).IsAssignableFrom(t);
+
+
             Configure.WithWeb()
-                .DefineEndpointName(typeof (MvcApplication).Namespace)
                 .NinjectBuilder(Kernel)
+                .DefineEndpointName("Hospital.Web")
                 .DefiningMessagesAs(isMessage)
                 .DefiningCommandsAs(isCommand)
                 .DefiningEventsAs(isEvent)
@@ -28,7 +33,12 @@ namespace Hospital.Web.App_Start
                 .JsonSerializer()
                 .MsmqTransport()
                 .UnicastBus()
-                .SendOnly();
+                .LoadMessageHandlers()
+                .PurgeOnStartup(true)
+                .CreateBus()
+                .Start();
+
         }
+
     }
 }

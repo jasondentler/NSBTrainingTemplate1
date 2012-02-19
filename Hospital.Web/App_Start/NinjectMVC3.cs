@@ -10,6 +10,12 @@ namespace Hospital.Web.App_Start
 
     public static class NinjectMVC3 
     {
+
+        static NinjectMVC3()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+        }
+
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
@@ -49,6 +55,7 @@ namespace Hospital.Web.App_Start
         {
             kernel.Load<ReadServicesModule>();
             kernel.Load<WriteServicesModule>();
+            kernel.Load<SignalRModule>();
         }        
     }
 }
