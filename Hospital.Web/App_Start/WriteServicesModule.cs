@@ -34,7 +34,7 @@ namespace Hospital.Web.App_Start
                 .MsmqTransport()
                 .UnicastBus()
                 .LoadMessageHandlers()
-                .PurgeOnStartup(true)
+                .PurgeOnStartup(false)
                 .CreateBus()
                 .Start();
 

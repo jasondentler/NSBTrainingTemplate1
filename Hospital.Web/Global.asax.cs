@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using SignalR.Hosting.AspNet.Routing;
+using log4net;
 
 namespace Hospital.Web
 {
@@ -29,6 +30,9 @@ namespace Hospital.Web
 
         protected void Application_Start()
         {
+            var log = LogManager.GetLogger(GetType());
+            log.InfoFormat("Application_Start called");
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

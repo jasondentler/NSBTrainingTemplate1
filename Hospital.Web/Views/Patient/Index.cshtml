@@ -1,25 +1,23 @@
-﻿@using Hospital.Web.Controllers
-@using Microsoft.Web.Mvc;
+﻿@using Microsoft.Web.Mvc;
+@using Newtonsoft.Json
 @model IEnumerable<Hospital.PatientBedAssignment>
-
 @{
     ViewBag.Title = "Patient Roster";
 }
-
-@(Html.ActionLink<PatientController>(c => c.Create(), "Create a patient"))
-
-<ul>
-@foreach(var patient in Model)
+@section Scripts
 {
-    <ul>
-        @(Html.ActionLink<PatientController>(c => c.Edit(patient.PatientId), patient.LastFirst)) - 
-        @(patient.BedAssignment.HasValue 
-            ? "Bed #" + patient.BedAssignment 
-            : patient.IsDischarged
-                ? "Discharged"
-                : patient.IsAdmitted
-                    ? "Waiting for a bed"
-                    : "Not admitted")
-    </ul>
+    <script src="@Url.Content("~/Scripts/Hospital.Patient.Index.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var initialViewModel = @Html.Raw(JsonConvert.SerializeObject(new {model = Model}));
+        var baseEditUrl = @Html.Raw(JsonConvert.SerializeObject(Url.Action("Edit")));
+    </script>
 }
-</ul>
+<div id="view">
+    @(Html.ActionLink<PatientController>(c => c.Create(), "Create a patient"))
+    <ul id="patientList" data-bind="foreach: model">
+        <li>
+            <a data-bind="attr: {href: EditUrl()}, text: LastFirst()"></a> - 
+            <span data-bind="text: Status()"></span>
+        </li>
+    </ul>
+</div>

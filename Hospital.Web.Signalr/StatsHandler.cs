@@ -11,50 +11,31 @@ namespace Hospital.Web.Signalr
     {
     }
 
-    public abstract class StatsHandler
+    public class StatsHandler :
+        IHandleMessages<PatientAdmitted>,
+        IHandleMessages<BedAssigned>,
+        IHandleMessages<PatientDischarged>
     {
+
+        private static readonly ILog Log = LogManager.GetLogger(typeof (StatsHandler));
+
         private readonly IConnectionManager _connectionManager;
 
-        protected StatsHandler(IConnectionManager connectionManager)
+        public StatsHandler(IConnectionManager connectionManager)
         {
             _connectionManager = connectionManager;
         }
 
         protected dynamic Clients
         {
-            get
-            {
-                return _connectionManager.GetClients<StatsHub>();
-            }
+            get { return _connectionManager.GetClients<StatsHub>(); }
         }
-    }
 
-    public class PatientAdmittedStatsHandler : 
-        StatsHandler,
-        IHandleMessages<PatientAdmitted>
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(PatientAdmittedStatsHandler));
-
-        public PatientAdmittedStatsHandler(IConnectionManager connectionManager) : base(connectionManager)
-        {
-        }
 
         public void Handle(PatientAdmitted message)
         {
             Log.DebugFormat("Admitted {0} {1}", message.FirstName, message.LastName);
             Clients.patientAdmitted();
-        }
-
-    }
-
-    public class BedAssignedStatsHandler : 
-        StatsHandler,
-        IHandleMessages<BedAssigned>
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(BedAssignedStatsHandler));
-
-        public BedAssignedStatsHandler(IConnectionManager connectionManager) : base(connectionManager)
-        {
         }
 
         public void Handle(BedAssigned message)
@@ -63,23 +44,10 @@ namespace Hospital.Web.Signalr
             Clients.bedAssigned();
         }
 
-    }
-
-    public class PatientDischargedStatsHandler : 
-        StatsHandler,
-        IHandleMessages<PatientDischarged>
-    {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(PatientDischargedStatsHandler));
-
-        public PatientDischargedStatsHandler(IConnectionManager connectionManager) : base(connectionManager)
-        {
-        }
-
         public void Handle(PatientDischarged message)
         {
             Log.DebugFormat("Discharged {0}", message.PatientId);
             Clients.patientDischarged();
         }
     }
-
 }
