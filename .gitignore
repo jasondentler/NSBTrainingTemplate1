@@ -1,6 +1,8 @@
 # Standard VS.NET
-obj
-bin
+*/obj/*
+*/Obj/*
+*/bin/*
+*/Bin/*
 *.csproj.user
 *.suo
 
