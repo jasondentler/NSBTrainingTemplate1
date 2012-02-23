@@ -1,12 +1,9 @@
-﻿@using Hospital.Web.Controllers
-@using Microsoft.Web.Mvc
+﻿@using Microsoft.Web.Mvc
 @using Newtonsoft.Json
-@model Hospital.PatientDetails
+@model PatientDetails
 @{
     ViewBag.Title = Model.LastFirst;
 }
-@section Scripts
-{
     <script type="text/javascript">
         var getAvailableBedsUrl = @Html.Raw(JsonConvert.SerializeObject(Url.Action("GetAvailableBeds")));
         $(function () {
@@ -46,7 +43,6 @@
             });
         });
     </script>
-}
 <div class="form">
     <div>
         <label>

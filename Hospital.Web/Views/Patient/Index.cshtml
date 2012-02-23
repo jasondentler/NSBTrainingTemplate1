@@ -1,17 +1,15 @@
 ﻿@using Microsoft.Web.Mvc;
-@using Newtonsoft.Json
-@model IEnumerable<Hospital.PatientBedAssignment>
+@model IEnumerable<PatientBedAssignment>
 @{
     ViewBag.Title = "Patient Roster";
+    Bundles.Reference("Scripts/PatientIndex");
+    Bundles.AddPageData("page", new
+                                    {
+                                        model = new {model = Model},
+                                        baseEditUrl = Url.Action("Edit")
+                                    });
 }
-@section Scripts
-{
-    <script src="@Url.Content("~/Scripts/Hospital.Patient.Index.js")" type="text/javascript"></script>
-    <script type="text/javascript">
-        var initialViewModel = @Html.Raw(JsonConvert.SerializeObject(new {model = Model}));
-        var baseEditUrl = @Html.Raw(JsonConvert.SerializeObject(Url.Action("Edit")));
-    </script>
-}
+
 <div id="view">
     @(Html.ActionLink<PatientController>(c => c.Create(), "Create a patient"))
     <ul id="patientList" data-bind="foreach: model">

@@ -1,3 +1,20 @@
+/*
+@reference themes/base/jquery.ui.core.css
+
+@reference themes/base/jquery.ui.accordion.css
+@reference themes/base/jquery.ui.autocomplete.css
+@reference themes/base/jquery.ui.button.css
+@reference themes/base/jquery.ui.datepicker.css
+@reference themes/base/jquery.ui.dialog.css
+@reference themes/base/jquery.ui.progressbar.css
+@reference themes/base/jquery.ui.resizable.css
+@reference themes/base/jquery.ui.selectable.css
+@reference themes/base/jquery.ui.slider.css
+@reference themes/base/jquery.ui.tabs.css
+
+@reference themes/base/jquery.ui.theme.css
+*/
+
 body
 {
     font-size: .85em;

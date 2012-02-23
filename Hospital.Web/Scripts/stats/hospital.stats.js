@@ -1,16 +1,14 @@
-﻿/// <reference path="jquery-1.6.2.js" />
-/// <reference path="jquery.signalR.js" />
-/// <reference path="knockout-2.0.0.js" />
-/// <reference path="knockout-mapping-2.0.0.js" />
-/// <reference path="hospital.js"/>
-
+﻿/// <reference path="../lib/jquery.js" />
+/// <reference path="../lib/knockout.js" />
+/// <reference path="../lib/knockout-mapping.js" />
+/// <reference path="../app/hospital.js" />
 hubInitializers.push(function () {
 
     $("#admittedPatientCount").attr('data-bind', 'text: AdmittedPatients()');
     $("#waitingForBedCount").attr('data-bind', 'text: WaitingForBeds()');
     $("#availableBedsCount").attr('data-bind', 'text: AvailableBeds()');
 
-    var viewModel = ko.mapping.fromJS(statsModel);
+    var viewModel = ko.mapping.fromJS(stats.model);
 
     ko.applyBindings(viewModel, $('#stats')[0]);
 

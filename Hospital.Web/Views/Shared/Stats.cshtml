@@ -1,10 +1,9 @@
-﻿@using Hospital.Web.Controllers
-@using Microsoft.Web.Mvc
+﻿@using Microsoft.Web.Mvc
 @using Newtonsoft.Json
-@model Hospital.HospitalStats
-<script type="text/javascript">
-    var statsModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-</script>
+@model HospitalStats
+@{
+    Bundles.AddPageData("stats", new {model = Model});
+}
 <div id="stats">
     <div>
         <label for="admittedPatientCount">Admitted Patients:</label>

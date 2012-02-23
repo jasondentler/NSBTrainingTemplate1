@@ -1,4 +1,8 @@
-﻿var hubInitializers = [];
+﻿/// <reference path="../lib/jquery.js" />
+/// <reference path="../lib/jquery.signalR.js" />
+/// <reference path="../lib/knockout.js" />
+/// <reference path="../lib/knockout-mapping.js" />
+var hubInitializers = [];
 
 $(function () {
     $.each(hubInitializers, function (idx, callback) {
