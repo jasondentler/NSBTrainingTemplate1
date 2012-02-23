@@ -26,3 +26,6 @@ Packages/*
 *.DS_Store
 /packages
 */log-file.txt
+
+/Hospital.Web/Bin
+/Hospital.Web/obj
