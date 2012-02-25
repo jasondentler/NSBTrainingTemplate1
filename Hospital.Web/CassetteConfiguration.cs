@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Web;
-using Cassette;
 using Cassette.Configuration;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
@@ -24,7 +22,16 @@ namespace Hospital.Web
             var signalrHubsPath = HttpRuntime.AppDomainAppVirtualPath + "signalr/hubs";
 
             bundles.AddPerIndividualFile<StylesheetBundle>("Content");
-            bundles.AddPerSubDirectory<ScriptBundle>("Scripts");
+            
+            bundles.AddPerSubDirectory<ScriptBundle>("Scripts", 
+#if DEBUG
+                b => b.Processor = new ScriptPipeline
+                                       {
+                                           CoffeeScriptCompiler = new JurassicCoffeeScriptCompiler()
+                                       }
+#endif
+            );
+
             bundles.AddUrlWithAlias<ScriptBundle>(signalrHubsPath, "signalrhubs",
                                                   b => b.AddReference("~/Scripts/lib/jquery.signalR.js"));
 

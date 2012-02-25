@@ -9,5 +9,10 @@ namespace Hospital.Commands
         public Guid PatientId { get; set; }
         public int Bed { get; set; }
 
+
+        public override string ToString()
+        {
+            return "Assign patient to bed #" + Bed;
+        }
     }
 }

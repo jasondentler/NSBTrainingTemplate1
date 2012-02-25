@@ -25,5 +25,11 @@ namespace Hospital.Web.Controllers
             return PartialView(model);
         }
 
+        [ChildActionOnly]
+        public PartialViewResult Commands()
+        {
+            return PartialView();
+        }
+
     }
 }

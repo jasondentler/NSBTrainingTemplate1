@@ -1,16 +1,10 @@
 ﻿using Hospital.Events;
 using NServiceBus;
 using SignalR;
-using SignalR.Hubs;
 using log4net;
 
 namespace Hospital.Web.Signalr
 {
-
-    public class StatsHub : Hub
-    {
-    }
-
     public class StatsHandler :
         IHandleMessages<PatientAdmitted>,
         IHandleMessages<BedAssigned>,

@@ -8,15 +8,4 @@
 {
     @Html.HiddenFor(m => m.CommandId)
     @Html.HiddenFor(m => m.PatientId)
-    <div class="form">
-        <div>
-            @Html.LabelFor(m => m.FirstName, "First Name:")
-            @Html.TextBoxFor(m => m.FirstName)
-        </div>
-        <div>
-            @Html.LabelFor(m => m.LastName)
-            @Html.TextBoxFor(m => m.LastName)
-        </div>
-        @Html.SubmitButton("Create", "Create")
-    </div>
 }

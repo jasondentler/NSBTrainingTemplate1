@@ -5,4 +5,5 @@ modernizr-1.7.js
 knockout.js
 knockout-mapping.js
 jquery.signalR.js
+jquery.pnotify.js
 

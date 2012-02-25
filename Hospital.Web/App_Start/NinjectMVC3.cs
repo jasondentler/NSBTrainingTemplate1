@@ -1,3 +1,5 @@
+using Microsoft.Practices.ServiceLocation;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Hospital.Web.App_Start.NinjectMVC3), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Hospital.Web.App_Start.NinjectMVC3), "Stop")]
 
@@ -56,6 +58,9 @@ namespace Hospital.Web.App_Start
             kernel.Load<ReadServicesModule>();
             kernel.Load<WriteServicesModule>();
             kernel.Load<SignalRModule>();
+
+            var sl = new NinjectAdapter.NinjectServiceLocator(kernel);
+            ServiceLocator.SetLocatorProvider(() => sl);
         }        
     }
 }

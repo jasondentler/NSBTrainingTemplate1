@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BedAssigned.cs" />
+    <Compile Include="CommandProcessed.cs" />
     <Compile Include="PatientAdmitted.cs" />
     <Compile Include="PatientCreated.cs" />
     <Compile Include="PatientDischarged.cs" />

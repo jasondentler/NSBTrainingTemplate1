@@ -1,16 +1,10 @@
 ﻿using Hospital.Events;
 using NServiceBus;
 using SignalR;
-using SignalR.Hubs;
 using log4net;
 
 namespace Hospital.Web.Signalr
 {
-
-    public class PatientsHub : Hub
-    {
-    }
-
     public class PatientsHandler :
         IHandleMessages<PatientCreated>,
         IHandleMessages<PatientAdmitted>,
@@ -32,7 +26,6 @@ namespace Hospital.Web.Signalr
         {
             get { return _connectionManager.GetClients<PatientsHub>(); }
         }
-
 
         public void Handle(PatientCreated message)
         {
@@ -64,6 +57,7 @@ namespace Hospital.Web.Signalr
             Log.DebugFormat("Discharged {0}", message.PatientId);
             Clients.patientDischarged(message);
         }
+
     }
 }
 

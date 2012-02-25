@@ -80,6 +80,7 @@
     <Compile Include="AdmitPatientHandler.cs" />
     <Compile Include="AggregateFactory.cs" />
     <Compile Include="AssignBedHandler.cs" />
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="CreatePatientHandler.cs" />
     <Compile Include="DischargePatientHandler.cs" />
     <Compile Include="DomainModule.cs" />
@@ -102,6 +103,10 @@
     <ProjectReference Include="..\Hospital.Domain\Hospital.Domain.csproj">
       <Project>{62E9C666-5523-4EB5-B881-152BA79C90C5}</Project>
       <Name>Hospital.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hospital.Events\Hospital.Events.csproj">
+      <Project>{D72372F4-81A6-4BD0-B51A-AAF183D6C993}</Project>
+      <Name>Hospital.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

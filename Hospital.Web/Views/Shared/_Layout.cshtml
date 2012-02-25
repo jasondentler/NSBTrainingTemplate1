@@ -1,5 +1,4 @@
 ﻿@{
-    Bundles.Reference("scripts/stats");
     Bundles.Reference("content/site.css");
 }
 <!DOCTYPE html>
@@ -9,11 +8,12 @@
     <title>@((ViewBag.Title ?? "") + " - Crusher Memorial Medical Center")</title>
     @Bundles.RenderStylesheets()
 </head>
-<body>
-    @Html.Action("Stats", "Home")
-    <h2>@ViewBag.Title</h2>
-    @RenderBody()
+    <body>
+        @Html.Action("Commands", "Home")
+        @Html.Action("Stats", "Home")
+        <h2>@ViewBag.Title</h2>
+        @RenderBody()
 
-    @Bundles.RenderScripts()
-</body>
+        @Bundles.RenderScripts()
+    </body>
 </html>

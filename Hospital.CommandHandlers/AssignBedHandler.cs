@@ -1,25 +1,23 @@
-﻿using System;
-using CommonDomain.Persistence;
+﻿using CommonDomain.Persistence;
 using Hospital.Commands;
 using Hospital.Domain;
 using NServiceBus;
 
 namespace Hospital.CommandHandlers
 {
-    public class AssignBedHandler : IHandleMessages<AssignBed>
+    public class AssignBedHandler : 
+        CommandHandler<Patient>,
+        IHandleMessages<AssignBed>
     {
-        private readonly IRepository _repository;
-
-        public AssignBedHandler(IRepository repository)
+        public AssignBedHandler(IRepository repository, IBus bus) : base(repository,bus)
         {
-            _repository = repository;
         }
 
         public void Handle(AssignBed message)
         {
-            var patient = _repository.GetById<Patient>(message.PatientId);
+            var patient = Get(message.PatientId);
             patient.AssignBed(message.Bed);
-            _repository.Save(patient, Guid.NewGuid());
+            Save(patient, message);
         }
     }
 }

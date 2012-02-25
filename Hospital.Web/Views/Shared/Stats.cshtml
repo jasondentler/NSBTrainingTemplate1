@@ -1,7 +1,7 @@
 ﻿@using Microsoft.Web.Mvc
-@using Newtonsoft.Json
 @model HospitalStats
 @{
+    Bundles.Reference("scripts/stats");
     Bundles.AddPageData("stats", new {model = Model});
 }
 <div id="stats">

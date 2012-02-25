@@ -36,6 +36,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -57,14 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandler.cs" />
+    <Compile Include="CommandHub.cs" />
     <Compile Include="PatientsHandler.cs" />
+    <Compile Include="PatientsHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatsHandler.cs" />
+    <Compile Include="StatsHub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hospital.Commands\Hospital.Commands.csproj">
+      <Project>{F5F597EF-9800-4795-9C79-FBB932CAED82}</Project>
+      <Name>Hospital.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hospital.Core\Hospital.Core.csproj">
       <Project>{AB51D4CA-78F1-4991-B49E-246918DBF3EE}</Project>
       <Name>Hospital.Core</Name>
