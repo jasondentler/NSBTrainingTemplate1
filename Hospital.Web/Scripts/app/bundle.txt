@@ -1,4 +1,0 @@
-﻿hospital.js
-
-[references]
-../lib

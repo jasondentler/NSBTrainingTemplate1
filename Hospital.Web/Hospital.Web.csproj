@@ -192,7 +192,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\app\bundle.txt" />
     <Content Include="Scripts\app\hospital.js" />
     <Content Include="Scripts\lib\bundle.txt" />
     <Content Include="Scripts\patientindex\Hospital.Patient.Index.js" />

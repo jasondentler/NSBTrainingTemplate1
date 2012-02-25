@@ -1,7 +1,9 @@
-﻿/// <reference path="../lib/jquery.js" />
-/// <reference path="../lib/knockout.js" />
-/// <reference path="../lib/knockout-mapping.js" />
-/// <reference path="../app/hospital.js" />
+﻿/// <reference path="~/Scripts/lib/jquery.js" />
+/// <reference path="~/Scripts/lib/knockout.js" />
+/// <reference path="~/Scripts/lib/knockout-mapping.js" />
+/// <reference path="~/Scripts/lib/jquery.signalR.js" />
+/// <reference path="~/signalrhubs" />
+/// <reference path="~/Scripts/app/hospital.js" />
 hubInitializers.push(function () {
 
     $("#admittedPatientCount").attr('data-bind', 'text: AdmittedPatients()');

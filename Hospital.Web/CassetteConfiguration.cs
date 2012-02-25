@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Web;
 using Cassette;
 using Cassette.Configuration;
 using Cassette.Scripts;
@@ -20,15 +21,14 @@ namespace Hospital.Web
             // In production the content will be minified, but the files are not combined.
             // So you probably want to tweak these defaults!
 
-            bundles.AddUrlWithAlias<ScriptBundle>("/signalr/hubs", "signalrhubs");
-            var hubs = bundles.Single();
+            var signalrHubsPath = HttpRuntime.AppDomainAppVirtualPath + "signalr/hubs";
 
             bundles.AddPerIndividualFile<StylesheetBundle>("Content");
             bundles.AddPerSubDirectory<ScriptBundle>("Scripts");
-            
-            var app = bundles.Get<ScriptBundle>("Scripts/app");
+            bundles.AddUrlWithAlias<ScriptBundle>(signalrHubsPath, "signalrhubs",
+                                                  b => b.AddReference("~/Scripts/lib/jquery.signalR.js"));
 
-            app.AddReference(hubs.Path);
+
 
 
 
